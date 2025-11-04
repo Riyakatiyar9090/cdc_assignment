@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    void DFS(unordered_map<int,vector<int>>& p,int u,vector<int>& result,vector<bool>& vis,int n){
+        if(vis[u]==true) return;
+        vis[u]=true;
+        result.push_back(u);
+        for(int &v: p[u]){
+            if(!vis[v]){
+                DFS(p,v,result,vis,n);
+            }
+        }
+    }
+    vector<int> dfs(vector<vector<int>>& adj) {
+        // Code here
+        int n=adj.size();
+        unordered_map<int,vector<int>> p;
+        for(int u=0;u<adj.size();u++){
+            for(auto v=adj[u].begin();v !=adj[u].end();v++){
+                p[u].push_back(*v);
+            }
+        }
+        vector<int> result;
+        vector<bool> vis(n+1,false);
+        DFS(p,0,result,vis,n);
+        return result;
+    }
+};
