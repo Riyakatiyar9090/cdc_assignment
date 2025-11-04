@@ -1,0 +1,43 @@
+class Solution {
+  public:
+    bool DFS(vector<vector<int>>& mp,int u, vector<bool>& vis,int parent){
+        vis[u]=true;
+        for(int &v:mp[u]){
+            if(vis[v] && v==parent){
+                continue;
+            }
+            else if(!vis[v] && v!=parent){
+                if(DFS(mp,v,vis,u)){
+                    return true;
+                }
+            }
+            else if(vis[v] && v!=parent){
+                return true;
+            }
+            
+        }
+        return false;
+        
+    }
+    bool isCycle(int V, vector<vector<int>>& edges) {
+        // Code here
+        vector<vector<int>> mp(V);
+        for(auto &edge:edges){
+            int u=edge[0];
+            int v=edge[1];
+            mp[u].push_back(v);
+            mp[v].push_back(u);
+        }
+        vector<bool> vis(V+1,false);
+        int parent=-1;
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+            if(DFS(mp,i,vis,parent)){
+            return true;
+        }
+        }
+        }
+        
+        return false;
+    }
+};
