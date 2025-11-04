@@ -1,0 +1,42 @@
+class Solution {
+  public:
+    bool DFS(vector<vector<int>>& adj,int u,vector<int>& vis,vector<int>& inrecursion){
+        vis[u]=true;
+        inrecursion[u]=true;
+        for(int &v:adj[u]){
+            if(!vis[v] && !inrecursion[v]){
+                if(DFS(adj,v,vis,inrecursion)){
+                    return true;
+                }
+            }
+            else if(vis[v] && !inrecursion[v]){
+                continue;
+            }
+            else if(vis[v] && inrecursion[v]){
+                return true;
+            }
+        }
+        inrecursion[u]=false;
+        return false;
+    }
+    bool isCyclic(int V, vector<vector<int>> &edges) {
+        // code here
+        vector<vector<int>> adj(V);
+        for(auto &edge: edges){
+            int u=edge[0];
+            int v=edge[1];
+            adj[u].push_back(v);
+        }
+        vector<int> vis(V+1,false);
+        vector<int> inrecursion(V+1,false);
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                
+                if(DFS(adj,i,vis,inrecursion)){
+                      return true;
+            }
+            }
+        }
+        return false;
+    }
+};
