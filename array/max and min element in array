@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    pair<long long, long long> getMinMax(vector<long long int> arr) {
+        // code here
+        long long max=arr[0];
+        long long min=arr[0];
+        for(auto i=arr.begin();i!=arr.end();i++){
+            if(max<*i){
+                max=*i;
+            }
+            if(min>*i){
+                min=*i;
+            }
+        }
+        return make_pair(min,max);
+    }
+};
