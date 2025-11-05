@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    // Function to search x in arr
+    // arr: input array
+    // X: element to be searched for
+    int search(vector<int>& arr, int x) {
+
+        // Your code here
+        for(auto it=arr.begin();it!=arr.end();it++){
+            if(*it==x){
+                return it-arr.begin();
+            }
+        }
+        return -1;
+    }
+};
