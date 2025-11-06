@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int help(TreeNode* root,int& maxi){
+        if(root==NULL) return 0;
+        int lh=help(root->left,maxi);
+        int rh=help(root->right,maxi);
+        maxi=max(maxi,lh+rh);
+        return 1+max(lh,rh);
+    }
+    int diameterOfBinaryTree(TreeNode* root) {
+        int maxi=INT_MIN;
+        help(root,maxi);
+        return maxi;
+
+    }
+};
