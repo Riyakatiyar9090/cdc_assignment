@@ -1,0 +1,16 @@
+class Solution {
+  public:
+    int help(Node* root,int& maxsum){
+        if(root==NULL) return 0;
+        int left=max(0,help(root->left,maxsum));
+        int right=max(0,help(root->right,maxsum));
+        maxsum=max(maxsum,left+right+root->data);
+        return max(left,right)+root->data;
+    }
+    int findMaxSum(Node *root) {
+        // code here
+        int maxsum=INT_MIN;
+        help(root,maxsum);
+        return maxsum;
+    }
+};
