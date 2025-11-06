@@ -1,0 +1,21 @@
+class Solution {
+  public:
+    void help(Node* root,vector<int>& ans){
+        stack<Node*> st;
+        st.push(root);
+        while(!st.empty()){
+            Node* node=st.top();
+            st.pop();
+            ans.push_back(node->data);
+            if(node->right) st.push(node->right);
+            if(node->left) st.push(node->left);
+            
+        }
+    }
+    vector<int> preOrder(Node* root) {
+        // code here
+        vector<int> ans;
+        help(root,ans);
+        return ans;
+    }
+};
