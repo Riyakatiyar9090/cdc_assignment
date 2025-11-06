@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    vector<int> inOrder(Node* root) {
+        // code here
+        vector<int> ans;
+        stack<Node*> st;
+        while(true){
+            if(root!=NULL){
+                st.push(root);
+                root=root->left;
+            }
+            else{
+                if(st.empty()==true){
+                    break;
+                }
+                else{
+                    root=st.top();
+                    st.pop();
+                    ans.push_back(root->data);
+                    root=root->right;
+                }
+            }
+            
+        }
+        return ans;
+    }
+};
