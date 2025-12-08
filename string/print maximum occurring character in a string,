@@ -1,0 +1,18 @@
+char maxOccurringChar(const string &s) {
+    int freq[256] = {0};
+    for (char ch : s) {
+        unsigned char c = static_cast<unsigned char>(ch);
+        freq[c]++;
+    }
+
+    int maxFreq = 0;
+    char ans = '\0';
+    for (char ch : s) {
+        unsigned char c = static_cast<unsigned char>(ch);
+        if (freq[c] > maxFreq) {
+            maxFreq = freq[c];
+            ans = ch;
+        }
+    }
+    return ans;  // character with maximum frequency
+}
