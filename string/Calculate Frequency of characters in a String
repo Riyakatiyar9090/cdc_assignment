@@ -1,0 +1,10 @@
+ map<char, int> countFrequency(string s) {
+        
+        map<char, int> freq;  // stores character → count
+        
+        for(char c : s) {
+            freq[c]++;        // increase count
+        }
+        
+        return freq;
+    }
