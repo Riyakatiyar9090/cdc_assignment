@@ -1,0 +1,13 @@
+string result = "";
+        
+        // keep only alphabets
+        for(char c : s) {
+            if((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z')) {
+                result += c;
+            }
+        }
+        
+        // if no alphabets found
+        if(result.empty()) return "-1";
+        
+        return result;
