@@ -1,0 +1,31 @@
+class Solution {
+public:
+    int n,m;
+    void dfs(vector<vector<int>>& image,int row,int col,int  delrow[],int  delcol[],int color,int inicolor){
+        // visited[row][col]=1;
+        image[row][col]=color;
+        for(int i=0;i<4;i++){
+            int nrow=row+delrow[i];
+            int ncol=col+delcol[i];
+             if(nrow>=0 && nrow<n && ncol>=0 && ncol<m  && image[nrow][ncol]==inicolor){
+                dfs(image,nrow,ncol,delrow,delcol,color,inicolor);
+             }
+
+        }
+        
+    }
+    vector<vector<int>> floodFill(vector<vector<int>>& image, int sr, int sc, int color) {
+         n=image.size();
+         m=image[0].size();
+        int inicolor=image[sr][sc];
+         if (inicolor == color) return image;
+        // vector<vector<int>> visited(n,vector<int>(m,0));
+        // vector<vector<int>> ans=image;
+        int delrow[]={-1,0,1,0};
+        int delcol[]={0,1,0,-1};
+        
+                    dfs(image,sr,sc,delrow,delcol,color,inicolor);
+        
+        return image;
+    }
+};
